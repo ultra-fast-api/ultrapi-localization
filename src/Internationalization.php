@@ -47,18 +47,18 @@ final class Internationalization
         }
 
         // Set default locale for intl extension
-        if (false === ini_set('intl.default_locale', $languageCode)) {
+        if (false === \ini_set('intl.default_locale', $languageCode)) {
             throw new UpiException('LOCALIZATION_DEFAULT_LOCALE_FAILED');
         }
 
         // Set locale for all categories
-        if (false === setlocale(LC_ALL, sprintf('%s.%s', $languageCode, $charset))) {
+        if (false === \setlocale(LC_ALL, \sprintf('%s.%s', $languageCode, $charset))) {
             throw new UpiException('LOCALIZATION_LOCALE_SET_FAILED');
         }
 
         // Set default timezone if provided
-        if ($timezone !== null && false === date_default_timezone_set($timezone)) {
-            throw new UpiException('LOCALIZATION_TIMEZONE_SET_FAILED');
+        if ($timezone !== null) {
+            \date_default_timezone_set($timezone);
         }
 
         // Set default locale for Intl extension
